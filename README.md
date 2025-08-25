@@ -59,7 +59,7 @@ A construção do projeto seguiu uma ordem que mesclou a obtenção de materiais
   - A montagem eletrônica foi realizada em etapas, começando com testes individuais dos motores das impressoras.
   - Em seguida, foi implementada a conexão dos controles Bluetooth e o controle de movimento pelo usuário.
   - Posteriormente, o acionamento dos solenoides foi integrado ao controle.
-  - Por último, implementamos a lógica dos botões de fim de curso para a detecção de gols.
+  - Por último, implementamos a lógica dos botões de fim de curso.
 
 3. Construção da Estrutura e Modelagem 3D:
 
