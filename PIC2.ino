@@ -4,7 +4,40 @@
 #define motor1b 33
 #define motor2a 25
 #define motor2b 26
+#define solenoide1 27
+#define solenoide2 14
+#define pwm_module 100
 
+
+class Player {
+
+  public:
+
+  int motora;
+  int motorb;
+  int solenoide;
+  int index;
+  int chute;
+  int affectedByStatus;
+  unsigned long statusTime;
+  bool abilityUsed;
+  unsigned long timeUsed;
+  
+    Player(int motora, int motorb, int solenoide, int index){
+      this->motora = motora;
+      this->motorb = motorb;
+      this->solenoide = solenoide;
+      this->index = index;
+      this->chute = 0;
+      this->affectedByStatus = 0;
+      this->statusTime = 0;
+      this->abilityUsed = false;
+      this->timeUsed = 0;
+    }
+};
+
+Player* player1 = new Player(32, 33, 27, 0);
+Player* player2 = new Player(25, 26, 14, 1);
 ControllerPtr myControllers[BP32_MAX_GAMEPADS];
 
 // This callback gets called any time a new gamepad is connected.
@@ -70,48 +103,90 @@ void dumpGamepad(ControllerPtr ctl) {
 }
 
 
-void processGamepad(ControllerPtr ctl) {
+void processGamepad(ControllerPtr ctl, Player* player, Player* enemyPlayer) {
     // There are different ways to query whether a button is pressed.
     // By query each button individually:
     //  a(), b(), x(), y(), l1(), etc...
-    if(ctl->index() == 0){
-        if(ctl->axisX() > -200 && ctl->axisX() < 200){
-            //para motor 1
-            analogWrite(motor1a, 0);
-            analogWrite(motor1b, 0);
-        }
-        else if(ctl->axisX() < -200){
-            //mexe motor 1 um lado
-            analogWrite(motor1a, 180);
-            analogWrite(motor1b, 0);
-        }
-        else if(ctl->axisX() > 200){
-            //mexe motor 1 outro lado
-            analogWrite(motor1a, 0);
-            analogWrite(motor1b, 180);
-        }
+
+    int motorValue = ctl->axisX();
+    long now = millis();
+
+    if(player->affectedByStatus == 2){
+        motorValue = ctl->axisX() * -1;
     }
-    else if(ctl->index() == 1){
-        if(ctl->axisX() > -200 && ctl->axisX() < 200){
-            //para motor2
-            analogWrite(motor2a, 0);
-            analogWrite(motor2b, 0);
-        }
-        else if(ctl->axisX() < -200){
-            //mexe motor 2
-            analogWrite(motor2a, 180);
-            analogWrite(motor2b, 0);
-        }
-        else if(ctl->axisX() > 200){
-            //mexe motor 2 outro lado
-            analogWrite(motor2a, 0);
-            analogWrite(motor2b, 180);
-        }
+
+
+    if(motorValue> -200 && motorValue < 200){
+        //para motor 1
+        analogWrite(player->motora, 0);
+        analogWrite(player->motorb, 0);
+    }
+    else if(motorValue > 200){
+        //mexe motor 1 um lado
+        analogWrite(player->motora, pwm_module);
+        analogWrite(player->motorb, 0);
+    }
+    else if(motorValue < -200){
+        //mexe motor 1 outro lado
+        analogWrite(player->motora, 0);
+        analogWrite(player->motorb, pwm_module);
+    }
+
+
+    //chute
+    if(ctl->buttons() == 1 && player->chute == 0 && player->affectedByStatus != 1){
+        player->chute = 1;
+        digitalWrite(player->solenoide, HIGH);
+        delay(50);
+        digitalWrite(player->solenoide, LOW);
+    }
+    else if(ctl->buttons() == 0 && player->chute == 1){
+        player->chute = 0;
+    }
+
+    //Especial 2
+    if (ctl->brake() > 500 && ctl->throttle() > 500 && enemyPlayer->affectedByStatus == 0 && !player->abilityUsed) {
+        Serial.printf("Jogador: %d Habilidade 2 utilizada\n", player->index);
+        enemyPlayer->affectedByStatus = 2;
+        enemyPlayer->statusTime = now;
+        player->abilityUsed = true;
+        player->timeUsed = now;
+    }
+
+    //Especial 1
+    if (ctl->buttons()== 2 && enemyPlayer->affectedByStatus == 0 && !player->abilityUsed) {
+        Serial.printf("Jogador: %d Habilidade 1 utilizada\n", player->index);
+        enemyPlayer->affectedByStatus = 1;
+        enemyPlayer->statusTime = now;
+        player->abilityUsed = true;
+        player->timeUsed = now;
+    }
+    
+    // Cura jogador
+    if(player->affectedByStatus == 1 && now - player->statusTime >= 3000){
+        Serial.printf("Jogador: %d curado\n", player->index);
+        player->affectedByStatus = 0;
+        player->statusTime = 0;
+        
+    }
+
+    if(player->affectedByStatus == 2 && now - player->statusTime >= 5000){
+        Serial.printf("Jogador: %d curado\n", player->index);
+        player->affectedByStatus = 0;
+        player->statusTime = 0;
+        
+    }
+
+    //Reseta abilidade
+    if(player->abilityUsed && now - player->timeUsed >= 30000){
+      Serial.printf("Jogador: %d Habilidade resetada\n", player->index);
+      player->abilityUsed = false;
+      player->timeUsed = 0;
     }
 
     // Another way to query controller data is by getting the buttons() function.
     // See how the different "dump*" functions dump the Controller info.
-    dumpGamepad(ctl);
+    //dumpGamepad(ctl);
 }
 
 
@@ -119,7 +194,12 @@ void processControllers() {
     for (auto myController : myControllers) {
         if (myController && myController->isConnected() && myController->hasData()) {
             if (myController->isGamepad()) {
-                processGamepad(myController);
+                
+                if(myController->index() == player1->index){
+                    processGamepad(myController, player1, player2);
+                }else if(myController->index() == player2->index){
+                    processGamepad(myController, player2, player1);
+                }
             }  else {
                 Serial.println("Unsupported controller");
             }
@@ -137,11 +217,12 @@ void setup() {
     // Setup the Bluepad32 callbacks
     BP32.setup(&onConnectedController, &onDisconnectedController);
 
-
-    pinMode(motor1a, OUTPUT);
-    pinMode(motor1b, OUTPUT);
-    pinMode(motor2a, OUTPUT);
-    pinMode(motor2b, OUTPUT);
+    pinMode(player1->motora, OUTPUT);
+    pinMode(player1->motorb, OUTPUT);
+    pinMode(player2->motora, OUTPUT);
+    pinMode(player2->motorb, OUTPUT);
+    pinMode(player1->solenoide, OUTPUT);
+    pinMode(player2->solenoide, OUTPUT);
 
 
     // "forgetBluetoothKeys()" should be called when the user performs
@@ -174,5 +255,5 @@ void loop() {
     // https://stackoverflow.com/questions/66278271/task-watchdog-got-triggered-the-tasks-did-not-reset-the-watchdog-in-time
 
     //     vTaskDelay(1);
-    delay(150);
+    delay(20);
 }
