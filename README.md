@@ -87,6 +87,7 @@ Todos os arquivos relacionados ao projeto, como o modelo 3D dos jogadores e as d
 - [Link para o vídeo de inspiração](https://www.youtube.com/shorts/SEkM0ANjcKw)
 - [Link para Documentos e Midias do projeto](https://drive.google.com/drive/folders/1O0BGBbFdcr47wDU5BUUsXc0_4UtAozr7?usp=sharing)
 
+
 O código utilizado para controle do ESP32 pode ser encontrado nesse repositório.
 
 ## Melhorias futuras
