@@ -36,8 +36,8 @@ A seguir, a lista de componentes utilizados na montagem do projeto:
 
 - Componentes Eletrônicos:
   - 1 Microcontrolador ESP32.
-  - 2 Módulos Relé para acionamento dos solenoides.
-  - 1 Módulos Ponte-H (Driver de Motor).
+  - 2 Módulos Relé para acionamento dos solenoides (Jqc-3ff-s-z).
+  - 1 Módulos Ponte-H Dupla (l298n).
   - 2 Controles Bluetooth.
   - Jumpers e fios para as conexões.
   - Protoboard para montagem do circuito de controle.
