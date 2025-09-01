@@ -58,7 +58,7 @@ A construção do projeto seguiu uma ordem que mesclou a obtenção de materiais
 2. Desenvolvimento e Testes Eletrônicos:
 
   - A montagem eletrônica foi realizada em etapas, começando com testes individuais dos motores das impressoras.
-  - Em seguida, foi implementada a conexão dos controles Bluetooth e o controle de movimento pelo usuário.
+  - Em seguida, foi implementada a conexão dos controles Bluetooth e o controle de movimento pelo usuário. Utilizamos a biblioteca Bluepad32 para conexão dos controles e leituras de input.
   - Posteriormente, forma realizados testes indivusais com os solenoides e logo em seguida a implementação de sua ação no código.
 
 3. Modelagem 3D:
@@ -82,10 +82,12 @@ A construção do projeto seguiu uma ordem que mesclou a obtenção de materiais
 
 ## Documentos e Midias
 
-Todos os arquivos relacionados ao projeto, como o modelo 3D dos jogadores, o código-fonte do ESP32 e as dimensões detalhadas da estrutura de madeira, estão disponíveis no repositório oficial do projeto ou em uma pasta compartilhada.
+Todos os arquivos relacionados ao projeto, como o modelo 3D dos jogadores e as dimensões detalhadas da estrutura de madeira, estão disponíveis no repositório oficial do projeto ou em uma pasta compartilhada.
 
 - [Link para o vídeo de inspiração](https://www.youtube.com/shorts/SEkM0ANjcKw)
 - [Link para Documentos e Midias do projeto](https://drive.google.com/drive/folders/1O0BGBbFdcr47wDU5BUUsXc0_4UtAozr7?usp=sharing)
+
+O código utilizado para controle do ESP32 pode ser encontrado nesse repositório.
 
 ## Melhorias futuras
 
