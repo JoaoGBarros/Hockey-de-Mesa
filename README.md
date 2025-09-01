@@ -81,3 +81,9 @@ Todos os arquivos relacionados ao projeto, como o modelo 3D dos jogadores, o esq
 
 - [Link para o vídeo de inspiração](https://www.youtube.com/shorts/SEkM0ANjcKw)
 - [Link para Documentos e Midias do projeto (Modelos 3D, Projeto da Caixa e Campo, Esquemático, Videos e Fotos)](https://drive.google.com/drive/folders/1O0BGBbFdcr47wDU5BUUsXc0_4UtAozr7?usp=sharing)
+
+## Melhorias futuras
+
+- Ajustar elevação do campo
+- Adicionar LEDs ou outro estimulo visual para indicar gols, especial utilizado, especial em cooldown e "atingido pelo especial"
+- Sensor a laser para contar Gols
