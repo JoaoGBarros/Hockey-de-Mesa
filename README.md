@@ -1,6 +1,4 @@
-# Hockey-de-Mesa
-Repositório do Trabalho de PIC II - UFES 2025/1
-
+# HockeyComp
 
 ## Descrição do trabalho
 Este projeto consiste no desenvolvimento e construção de um jogo de hockey de mesa automatizado, inspirado em jogos clássicos como o pebolim e o air hockey. O objetivo foi criar uma experiência onde dois jogadores podem se enfrentar controlando seus respectivos "atletas" em campo através de controles Bluetooth.
