@@ -80,7 +80,7 @@ A construção do projeto seguiu uma ordem que mesclou a obtenção de materiais
 Todos os arquivos relacionados ao projeto, como o modelo 3D dos jogadores, o esquemático do circuito eletrônico, o código-fonte do ESP32 e as dimensões detalhadas da estrutura de madeira, estão disponíveis no repositório oficial do projeto ou em uma pasta compartilhada.
 
 - [Link para o vídeo de inspiração](https://www.youtube.com/shorts/SEkM0ANjcKw)
-- [Link para Documentos e Midias do projeto (Modelos 3D, Projeto da Caixa e Campo, Esquemático, Videos e Fotos)](https://drive.google.com/drive/folders/1O0BGBbFdcr47wDU5BUUsXc0_4UtAozr7?usp=sharing)
+- [Link para Documentos e Midias do projeto](https://drive.google.com/drive/folders/1O0BGBbFdcr47wDU5BUUsXc0_4UtAozr7?usp=sharing)
 
 ## Melhorias futuras
 
