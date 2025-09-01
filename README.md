@@ -60,13 +60,14 @@ A construção do projeto seguiu uma ordem que mesclou a obtenção de materiais
 3. Modelagem 3D:
 
   - O modelo 3D dos jogadores foi desenvolvido utilizando o Blender, o que exigiu um aprendizado da ferramenta pela equipe.
-  - Para cada modelo criado, foram realizados testes em relação a tamanho de diametro e altura, chegando ao resultado final no 5 modelo criado.
+  - Para cada modelo criado, foram realizados testes em relação a tamanho de diametro e altura, chegando ao resultado final após 5 modelo criado.
 
 4. Construção da Estrutura
 
   - Paralelamente a modelagem 3D, seguimos para a construção da caixa e do campo, definindo as medidas e buscando os materiais.
   - Criamos o croqui da caixa.
   - Com auxilio do Reginaldo, marceneiro do CT, conseguimos construir a estrutura da caixa e do campo.
+  - Foram necessarios alguns ajustes, como furar o espaço destinado ao motor do trilho.
   - Por ultimo, foi criado o design dos adesivos utilizando o Canva.
 
 5. Montagem Final:
@@ -77,7 +78,7 @@ A construção do projeto seguiu uma ordem que mesclou a obtenção de materiais
 
 ## Documentos e Midias
 
-Todos os arquivos relacionados ao projeto, como o modelo 3D dos jogadores, o esquemático do circuito eletrônico, o código-fonte do ESP32 e as dimensões detalhadas da estrutura de madeira, estão disponíveis no repositório oficial do projeto ou em uma pasta compartilhada.
+Todos os arquivos relacionados ao projeto, como o modelo 3D dos jogadores, o código-fonte do ESP32 e as dimensões detalhadas da estrutura de madeira, estão disponíveis no repositório oficial do projeto ou em uma pasta compartilhada.
 
 - [Link para o vídeo de inspiração](https://www.youtube.com/shorts/SEkM0ANjcKw)
 - [Link para Documentos e Midias do projeto](https://drive.google.com/drive/folders/1O0BGBbFdcr47wDU5BUUsXc0_4UtAozr7?usp=sharing)
